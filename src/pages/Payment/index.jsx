@@ -14,6 +14,7 @@ function Payment() {
     return paymentDetails.reduce((total, item) => total + item.price, 0);
   }
 
+  
   // Fungsi untuk menghitung kembalian
   const calculateChange = () => {
     return paymentAmount - calculateTotalPrice();
