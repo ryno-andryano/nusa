@@ -5,6 +5,7 @@ import Main from "./layouts/Main.jsx";
 import Order from "./pages/Order";
 import Payment from "./pages/Payment";
 import History from "./pages/History";
+import HistoryDetail from "./pages/HistoryDetail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/history" element={<History />} />
+          <Route path="/history/:id" element={<HistoryDetail />} />
         </Routes>
       </Main>
     </div>
