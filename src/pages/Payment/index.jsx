@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function Payment() {
-  // State untuk rincian pembayaran dan pembayaran
-  const [paymentDetails, setPaymentDetails] = useState([
-    { name: 'Bakso', price: 15000 },
-    { name: 'Mie Ayam', price: 20000 },
-    { name: 'Es Teh Manis', price: 5000 },
-  ]);
+  // Mengambil data keranjang (cart) dari Redux store
+  const cart = useSelector((state) => state.cart);
+
+  // Mengambil items, totalPrice, dan images dari state cart
+  const { items, totalPrice } = cart;
+
   const [paymentAmount, setPaymentAmount] = useState(0);
 
-  // Fungsi untuk menghitung total harga rincian pembayaran
-  const calculateTotalPrice = () => {
-    return paymentDetails.reduce((total, item) => total + item.price, 0);
-  }
-
-  
   // Fungsi untuk menghitung kembalian
   const calculateChange = () => {
-    return paymentAmount - calculateTotalPrice();
+    return paymentAmount - totalPrice;
+  };
+
+  const onSubmit = () => {
+    if (paymentAmount === 0) {
+      // Jika pembayaran masih 0, tampilkan pesan kesalahan atau lakukan sesuatu yang sesuai
+      console.log("Payment amount must be greater than 0.");
+    } else {
+      // Jika pembayaran valid, lanjutkan dengan proses pembayaran
+      console.log("Processing payment...");
+      // Di sini Anda dapat menambahkan logika untuk menyelesaikan pembayaran, seperti mengirim data ke server, dan lainnya.
+    }
   };
 
   return (
@@ -26,12 +32,27 @@ function Payment() {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <h2 className="text-lg font-bold">Payment Details</h2>
-          <ul>
-            {paymentDetails.map((item, index) => (
-              <li key={index}>{item.name}: {item.price}</li>
-            ))}
-          </ul>
-          <p>Total Price: {calculateTotalPrice()}</p>
+          <div className="flex flex-col items-start justify-center rounded-lg bg-white p-4 shadow">
+            <ul>
+              {items.map((item, index) => (
+                <li key={item.menu.id} className="mb-4 flex items-center">
+                  <img
+                    src={item.menu.image}
+                    alt={item.menu.name}
+                    className="w-16 h-16 mr-4"
+                  />
+                  <div>
+                    <p>{item.menu.name}</p>
+                    <p>{item.menu.price}</p>
+                  </div>
+                  {index < items.length - 1 && <hr className="my-4 border-t border-gray-300" />}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 font-semibold">Total Price: {totalPrice}</p>
+          </div>
+
+
         </div>
         <div>
           <h2 className="text-lg font-bold">Payment</h2>
@@ -43,16 +64,16 @@ function Payment() {
             onChange={(e) => setPaymentAmount(e.target.value)}
           />
           <button
-            className="bg-blue-500 text-white p-2 rounded mt-2"
-            onClick={() => {
-              // Proses pembayaran
-            }}
+            className="bg-[#FF2351] text-white p-2 rounded mt-2 transition-colors hover:bg-[#e81e48]"
+            onClick={onSubmit}
           >
             Process Payment
           </button>
-          <div className="mt-4">
-            Kembalian: {calculateChange()}
-          </div>
+          {paymentAmount !== 0 && (
+            <div className="mt-4">
+              Kembalian: {calculateChange()}
+            </div>
+          )}
         </div>
       </div>
     </div>
