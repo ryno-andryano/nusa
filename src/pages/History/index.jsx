@@ -1,10 +1,11 @@
 import axios from "axios";
 import useSWR from "swr";
-import { formatCurrency } from "../../utility/format";
+import Transaction from "./Transaction";
 
 function History() {
   const getHistory = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/transactions", getHistory);
+  console.log(data);
 
   return (
     <>
@@ -34,25 +35,8 @@ function History() {
             </thead>
 
             <tbody className="bg-white lg:border-gray-300">
-              {data?.map(({ id, time, totalPrice }) => (
-                // <HistoryItem />
-                <tr className="" key={id}>
-                  <td className="py-4 text-sm text-gray-600">{time}</td>
-
-                  <td className="py-4 text-sm font-normal text-gray-600">
-                    {id}
-                  </td>
-
-                  <td className="py-4 text-sm text-gray-600">
-                    {formatCurrency(totalPrice)}
-                  </td>
-
-                  <td className="py-4 text-sm font-normal text-gray-500">
-                    <button className="rounded-md bg-[#FF2351] px-2 py-1 text-white">
-                      Detail
-                    </button>
-                  </td>
-                </tr>
+              {data?.map(( transaction ) => (
+                <Transaction key={transaction.id} transaction={transaction}/>
               ))}
             </tbody>
           </table>
