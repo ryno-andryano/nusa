@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 function Payment() {
   // Mengambil data keranjang (cart) dari Redux store
   const cart = useSelector((state) => state.cart);
+  console.log(cart);
 
   // Mengambil items, totalPrice, dan images dari state cart
   const { items, totalPrice } = cart;
