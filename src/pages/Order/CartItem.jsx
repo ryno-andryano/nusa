@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 
 function CartItem({ menu, quantity }) {
   return (
-    <div key={menu.id} className="flex gap-8 rounded-lg bg-white p-4">
+    <div className="flex gap-8 rounded-lg bg-white p-4">
       <img
-        className="aspect-square w-20 rounded-lg object-cover"
+        className="aspect-square w-14 rounded object-cover"
         src={menu.image}
         alt={menu.name}
       />
