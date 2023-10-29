@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useSWR from "swr";
 import axios from "axios";
 import { formatCurrency } from "../../utility/format.js";
 import MenuItem from "./MenuItem.jsx";
 import CartItem from "./CartItem.jsx";
 import { useEffect, useState } from "react";
+import { emptyCart } from "../../redux/cartSlice.js";
 
 function Order() {
   const [menus, setMenus] = useState([]);
   const items = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const dispatch = useDispatch();
   const { data, error, isLoading } = useSWR(
     "http://localhost:3000/menus",
     (url) => axios.get(url).then((response) => response.data),
@@ -19,6 +21,8 @@ function Order() {
   useEffect(() => {
     if (data) setMenus([...data]);
   }, [data]);
+
+  const handleResetClick = () => dispatch(emptyCart());
 
   return (
     <div className="flex">
@@ -46,6 +50,7 @@ function Order() {
             {items.length > 0 && (
               <button
                 className="text-sm text-gray-400"
+                onClick={handleResetClick}
                 type="button"
               >
                 Clear
