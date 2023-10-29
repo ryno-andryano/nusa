@@ -21,11 +21,11 @@ function Order() {
   }, [data]);
 
   return (
-    <div className="flex gap-12 xl:gap-16">
-      <section className="basis-2/3">
+    <div className="flex">
+      <section className="w-full p-10 xl:px-20">
         <h1 className="text-2xl font-bold uppercase">Choose Order</h1>
         {!error && !isLoading ? (
-          <div className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {menus.map((menu) => (
               <MenuItem
                 key={menu.id}
@@ -39,17 +39,30 @@ function Order() {
         )}
       </section>
 
-      <section className="basis-1/3">
-        <h1 className="text-2xl font-bold uppercase">Current Order</h1>
-        <div className="mt-10 flex flex-col gap-4">
-          {items.length > 0 ? (
-            items.map((item) => <CartItem key={item.menu.id} item={item} />)
-          ) : (
-            <p className="py-5 text-center">Empty</p>
-          )}
+      <section className="sticky top-0 flex h-screen w-[400px] flex-none flex-col justify-between gap-8 bg-white p-10">
+        <div className="flex min-h-0 flex-col">
+          <div className="mb-10 flex items-center justify-between">
+            <h1 className="text-2xl font-bold uppercase">Current Order</h1>
+            {items.length > 0 && (
+              <button
+                className="text-sm text-gray-400"
+                type="button"
+              >
+                Clear
+              </button>
+            )}
+          </div>
 
-          <hr className="mt-4 border-t border-gray-700" />
+          <div className="flex flex-col gap-4 overflow-y-auto pb-2">
+            {items.length > 0 ? (
+              items.map((item) => <CartItem key={item.menu.id} item={item} />)
+            ) : (
+              <p className="py-5 text-center">Empty</p>
+            )}
+          </div>
+        </div>
 
+        <div className="flex h-[104px] flex-none flex-col">
           <div className="flex items-center justify-between text-xl font-semibold">
             <span>Total</span>
             <span>{formatCurrency(totalPrice)}</span>

@@ -5,8 +5,8 @@ function Sidebar() {
   const { pathname } = useLocation();
 
   return (
-    <aside className="fixed flex h-screen w-24 flex-col items-center gap-10 py-8">
-      <Link to="/" className="mb-4 text-xl font-semibold">
+    <aside className="fixed flex h-screen w-24 flex-col items-center gap-10 bg-white py-10">
+      <Link to="/" className="mb-2 text-xl font-semibold">
         <img className="w-10" src={logo} alt="Nusa" title="Nusa" />
       </Link>
 

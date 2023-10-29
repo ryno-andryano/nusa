@@ -7,7 +7,7 @@ function History() {
   const { data } = useSWR("http://localhost:3000/transactions", getHistory);
 
   return (
-    <>
+    <section className="p-10 xl:px-20">
       <h1 className="text-2xl font-bold uppercase">Transaction History</h1>
 
       <div className="mt-10 rounded-xl bg-white px-6 shadow">
@@ -37,7 +37,7 @@ function History() {
           </tbody>
         </table>
       </div>
-    </>
+    </section>
   );
 }
 

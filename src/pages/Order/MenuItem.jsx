@@ -13,10 +13,9 @@ function MenuItem({ menu, inCart }) {
 
   return (
     <div
-      className={
-        "flex cursor-pointer flex-col items-center justify-center rounded-lg bg-white p-4 shadow transition hover:shadow-lg" +
-        (inCart && " ring-4 ring-pink-600")
-      }
+      className={`flex cursor-pointer flex-col items-center justify-center rounded-lg bg-white p-4 shadow transition hover:shadow-lg ${
+        inCart ? "ring-4 ring-pink-600" : ""
+      }`}
       onClick={handleItemClick}
     >
       <img
@@ -24,7 +23,10 @@ function MenuItem({ menu, inCart }) {
         src={image}
         alt={name}
       />
-      <h2 className="mt-3 w-full overflow-hidden text-ellipsis whitespace-nowrap text-center font-semibold">
+      <h2
+        className="mt-3 w-full overflow-hidden text-ellipsis whitespace-nowrap text-center font-semibold"
+        title={name}
+      >
         {name}
       </h2>
       <p className="text-center">{formatCurrency(price)}</p>
