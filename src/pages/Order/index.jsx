@@ -7,11 +7,13 @@ import { emptyCart } from "../../redux/cartSlice.js";
 import { formatCurrency } from "../../utility/format.js";
 import MenuItem from "./MenuItem.jsx";
 import CartItem from "./CartItem.jsx";
+import CategoryFilter from "./CategoryFilter.jsx";
 
 function Order() {
   const [menus, setMenus] = useState([]);
   const [query, setQuery] = useState("");
   const [sortBy, setSortBy] = useState("default");
+  const [filters, setFilters] = useState([]);
   const items = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const dispatch = useDispatch();
@@ -29,6 +31,11 @@ function Order() {
         [...prevState].filter((menu) =>
           menu.name.toLowerCase().includes(query.toLowerCase()),
         ),
+      );
+
+    if (filters.length > 0)
+      setMenus((prevState) =>
+        [...prevState].filter((menu) => filters.includes(menu.category)),
       );
 
     switch (sortBy) {
@@ -57,53 +64,86 @@ function Order() {
         break;
       }
     }
-  }, [data, query, sortBy]);
+  }, [data, filters, query, sortBy]);
 
   const handleResetClick = () => dispatch(emptyCart());
 
+  const handleCategoryClick = (event) => {
+    const { name } = event.target;
+    if (name === "all") {
+      setFilters([]);
+      return;
+    }
+
+    const index = filters.indexOf(name);
+    if (index === -1) setFilters([...filters, name]);
+    else setFilters([...filters.filter((filter) => filter !== name)]);
+  };
+
   return (
     <div className="flex">
-      <section className="w-full p-10 xl:px-20">
+      <section className="w-full min-w-0 p-10 xl:px-20">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold uppercase">Choose Order</h1>
 
-          <div>
+          <div className="relative">
             <input
-              className="mr-2 w-64 rounded border px-2 py-1 focus:border-[#FF2351] focus:ring-[#FF2351]"
+              className="w-64 rounded-lg border py-1 pl-11 pr-4 focus:border-[#FF2351] focus:ring-[#FF2351]"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               type="search"
-              placeholder="Search Menu"
+              placeholder="Search menu..."
               autoComplete="off"
               spellCheck="false"
             />
 
-            <select
-              className="rounded border px-2 py-1 pr-8 focus:border-[#FF2351] focus:ring-[#FF2351]"
-              name="sort"
-              title="Sort"
-              value={sortBy}
-              onChange={(event) => setSortBy(event.target.value)}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-search absolute left-4 top-[50%] -translate-y-[50%]"
+              viewBox="0 0 16 16"
             >
-              <option value="default">Default</option>
-              <option value="name-asc">&uarr; Name</option>
-              <option value="name-desc">&darr; Name</option>
-              <option value="price-asc">&uarr; Price</option>
-              <option value="price-desc">&darr; Price</option>
-            </select>
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
           </div>
         </div>
 
         {!error && !isLoading ? (
-          <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3 xl:grid-cols-4">
-            {menus.map((menu) => (
-              <MenuItem
-                key={menu.id}
-                menu={menu}
-                inCart={items.some((item) => item.menu.id === menu.id)}
+          <>
+            <div className="mb-2 mt-10 flex w-full justify-between gap-4 pb-2">
+              <CategoryFilter
+                categories={[...new Set([...data].map((d) => d.category))]}
+                filters={filters}
+                onClick={handleCategoryClick}
               />
-            ))}
-          </div>
+
+              <select
+                className="h-full rounded-lg border px-4 py-2 pr-8 focus:border-[#FF2351] focus:ring-[#FF2351]"
+                name="sort"
+                title="Sort"
+                value={sortBy}
+                onChange={(event) => setSortBy(event.target.value)}
+              >
+                <option value="default">Default</option>
+                <option value="name-asc">&uarr; Name</option>
+                <option value="name-desc">&darr; Name</option>
+                <option value="price-asc">&uarr; Price</option>
+                <option value="price-desc">&darr; Price</option>
+              </select>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 xl:grid-cols-4">
+              {menus.map((menu) => (
+                <MenuItem
+                  key={menu.id}
+                  menu={menu}
+                  inCart={items.some((item) => item.menu.id === menu.id)}
+                />
+              ))}
+            </div>
+          </>
         ) : (
           <p>Loading...</p>
         )}

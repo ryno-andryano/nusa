@@ -14,7 +14,7 @@ function MenuItem({ menu, inCart }) {
   return (
     <div
       className={`flex cursor-pointer flex-col items-center justify-center rounded-lg bg-white p-4 shadow transition hover:shadow-lg ${
-        inCart ? "ring-4 ring-pink-600" : ""
+        inCart ? "ring-4 ring-[#FF2351]" : ""
       }`}
       onClick={handleItemClick}
     >
