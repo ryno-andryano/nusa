@@ -1,15 +1,17 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useSWR from "swr";
 import axios from "axios";
+import { emptyCart } from "../../redux/cartSlice.js";
 import { formatCurrency } from "../../utility/format.js";
 import MenuItem from "./MenuItem.jsx";
 import CartItem from "./CartItem.jsx";
-import { useEffect, useState } from "react";
-import { emptyCart } from "../../redux/cartSlice.js";
 
 function Order() {
   const [menus, setMenus] = useState([]);
+  const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState("default");
   const items = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const dispatch = useDispatch();
@@ -19,15 +21,79 @@ function Order() {
   );
 
   useEffect(() => {
-    if (data) setMenus([...data]);
-  }, [data]);
+    if (!data) return;
+    setMenus([...data]);
+
+    if (query)
+      setMenus((prevState) =>
+        [...prevState].filter((menu) =>
+          menu.name.toLowerCase().includes(query.toLowerCase()),
+        ),
+      );
+
+    switch (sortBy) {
+      case "name-asc": {
+        setMenus((prevState) =>
+          [...prevState].sort((a, b) => a.name.localeCompare(b.name)),
+        );
+        break;
+      }
+      case "name-desc": {
+        setMenus((prevState) =>
+          [...prevState].sort((a, b) => b.name.localeCompare(a.name)),
+        );
+        break;
+      }
+      case "price-asc": {
+        setMenus((prevState) =>
+          [...prevState].sort((a, b) => a.price - b.price),
+        );
+        break;
+      }
+      case "price-desc": {
+        setMenus((prevState) =>
+          [...prevState].sort((a, b) => b.price - a.price),
+        );
+        break;
+      }
+    }
+  }, [data, query, sortBy]);
 
   const handleResetClick = () => dispatch(emptyCart());
 
   return (
     <div className="flex">
       <section className="w-full p-10 xl:px-20">
-        <h1 className="text-2xl font-bold uppercase">Choose Order</h1>
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-bold uppercase">Choose Order</h1>
+
+          <div>
+            <input
+              className="mr-2 w-64 rounded border px-2 py-1 focus:border-[#FF2351] focus:ring-[#FF2351]"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="search"
+              placeholder="Search Menu"
+              autoComplete="off"
+              spellCheck="false"
+            />
+
+            <select
+              className="rounded border px-2 py-1 pr-8 focus:border-[#FF2351] focus:ring-[#FF2351]"
+              name="sort"
+              title="Sort"
+              value={sortBy}
+              onChange={(event) => setSortBy(event.target.value)}
+            >
+              <option value="default">Default</option>
+              <option value="name-asc">&uarr; Name</option>
+              <option value="name-desc">&darr; Name</option>
+              <option value="price-asc">&uarr; Price</option>
+              <option value="price-desc">&darr; Price</option>
+            </select>
+          </div>
+        </div>
+
         {!error && !isLoading ? (
           <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3 xl:grid-cols-4">
             {menus.map((menu) => (

@@ -1,7 +1,7 @@
-import { formatCurrency } from "../../utility/format.js";
-import PropTypes from "prop-types";
-import { addCartItem, removeCartItem } from "../../redux/cartSlice.js";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+import { formatCurrency } from "../../utility/format.js";
+import { addCartItem, removeCartItem } from "../../redux/cartSlice.js";
 
 function MenuItem({ menu, inCart }) {
   const { name, price, image } = menu;
