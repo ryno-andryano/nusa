@@ -7,8 +7,8 @@ function History() {
   const getHistory = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/transactions", getHistory);
 
-  const [sortDate, setSortDate] = useState(false);
-  const [sortPrice, setSortPrice] = useState(false);
+  const [sortDate, setSortDate] = useState(true);
+  const [sortPrice, setSortPrice] = useState(true);
 
   const handleSortClick = (sortType) => () => {
     sortTransactions(sortType);
@@ -22,15 +22,15 @@ function History() {
   const sortTransactions = (sortType) => {
     data.sort((a, b) => {
       if (sortType === "price") {
-        const lowPrice = parseFloat(a.totalPrice) - parseFloat(b.totalPrice); // Sort Transactions by Lowest Price
-        const highPrice = parseFloat(b.totalPrice) - parseFloat(a.totalPrice); // Sort Transactions by Highest Price
-        return sortPrice ? highPrice : lowPrice;
+        const lowPrice = parseFloat(a.totalPrice) - parseFloat(b.totalPrice);
+        const highPrice = parseFloat(b.totalPrice) - parseFloat(a.totalPrice);
+        return sortPrice ? lowPrice : highPrice;
       } else if (sortType === "date") {
         // Sort Transactions by Date
         const dateA = new Date(a.time);
         const dateB = new Date(b.time);
-        const oldestDate = dateA - dateB;
-        const latestDate = dateB - dateA;
+        const latestDate = dateA - dateB;
+        const oldestDate = dateB - dateA;
         return sortDate ? latestDate : oldestDate;
       }
     });
@@ -55,7 +55,7 @@ function History() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className={`h-5 w-5 ${sortDate ? "hidden" : "block"}`}
+                  className={`h-5 w-5 ${sortDate ? "block" : "hidden"}`}
                 >
                   <path
                     strokeLinecap="round"
@@ -70,7 +70,7 @@ function History() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className={`h-5 w-5 ${sortDate ? "block" : "hidden"}`}
+                  className={`h-5 w-5 ${sortDate ? "hidden" : "block"}`}
                 >
                   <path
                     strokeLinecap="round"
@@ -96,7 +96,7 @@ function History() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className={`h-5 w-5 ${sortPrice ? "block" : "hidden"}`}
+                  className={`h-5 w-5 ${sortPrice ? "hidden" : "block"}`}
                 >
                   <path
                     strokeLinecap="round"
@@ -111,7 +111,7 @@ function History() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className={`h-5 w-5 ${sortPrice ? "hidden" : "block"}`}
+                  className={`h-5 w-5 ${sortPrice ? "block" : "hidden"}`}
                 >
                   <path
                     strokeLinecap="round"
