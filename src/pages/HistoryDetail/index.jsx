@@ -29,7 +29,7 @@ function HistoryDetail() {
                 className={`flex py-6 ${
                   index !== data.items.length - 1 ? "border-b-2" : ""
                 }`}
-                key={item.id}
+                key={item.menu.id}
               >
                 <img
                   className="aspect-square w-20 rounded-lg object-cover"
