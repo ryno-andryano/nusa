@@ -4,3 +4,5 @@ export const formatCurrency = (price = 0) =>
     currency: "IDR",
     minimumFractionDigits: 0,
   }).format(price);
+
+export const formatDate = (date) => new Date(date).toLocaleString("id-ID");

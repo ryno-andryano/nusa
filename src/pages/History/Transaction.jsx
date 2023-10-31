@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { formatCurrency } from "../../utility/format.js";
+import { formatCurrency, formatDate } from "../../utility/format.js";
 import PropTypes from "prop-types";
 
 function Transaction({ transaction }) {
@@ -13,7 +13,7 @@ function Transaction({ transaction }) {
 
   return (
     <tr className="" key={id}>
-      <td className="py-4 text-sm text-gray-600">{time}</td>
+      <td className="py-4 text-sm text-gray-600">{formatDate(time)}</td>
 
       <td className="py-4 text-sm font-normal text-gray-600">{id}</td>
 

@@ -9,6 +9,7 @@ import axios from "axios";
 
 function Payment() {
 
+
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,28 +31,22 @@ function Payment() {
 
       const newTransaction = {
         time: new Date().toLocaleString(),
-        item: items,
+        items,
+        totalPrice,
         paid: parseInt(paymentAmount),
         return: calculateChange(),
-        totalPrice: totalPrice,
       };
-
-      console.log("Processing payment:", newTransaction);
 
       // kirim ke server di sini
       axios
      .post("http://localhost:3000/transactions", newTransaction)
      .then(() => {
-       console.log("Transaction posted successfully.");
+       dispatch(emptyCart()); // Mengosongkan keranjang setelah pembayaran
+       setIsPaymentSuccessModalOpen(true);
      })
      .catch((error) => {
        console.error("Error posting transaction:", error);
      });
-
-      dispatch(emptyCart()); // Mengosongkan keranjang setelah pembayaran
-
-      setIsPaymentSuccessModalOpen(true);
-    
   };
 
   return (
