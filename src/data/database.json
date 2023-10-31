@@ -343,6 +343,119 @@
       "totalPrice": 1226000,
       "paid": 1500000,
       "return": 274000
+    },
+    {
+      "time": "10/31/2023, 11:35:08 AM",
+      "item": [
+        {
+          "menu": {
+            "id": 2,
+            "name": "Hokkien Spring Roll",
+            "category": "Appetizer",
+            "price": 68000,
+            "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_0FD771097A334837963EE66E6EC573FA_1441761609.jpeg"
+          },
+          "quantity": 1,
+          "subtotal": 68000
+        },
+        {
+          "menu": {
+            "id": 1,
+            "name": "Stuffed Tofu Parahyangan",
+            "category": "Appetizer",
+            "price": 69000,
+            "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_C3D2F40C1F6B4219A5E70DF3D1B75EA2_1697015416.jpeg"
+          },
+          "quantity": 2,
+          "subtotal": 138000
+        },
+        {
+          "menu": {
+            "id": 3,
+            "name": "Udang Gulung Tempo Doeloe",
+            "category": "Appetizer",
+            "price": 77000,
+            "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E978ED401D464D8F96CCDEBF4A1D8307_1441761613.jpeg"
+          },
+          "quantity": 3,
+          "subtotal": 231000
+        },
+        {
+          "menu": {
+            "id": 4,
+            "name": "Malay Kerabu Mangga",
+            "category": "Appetizer",
+            "price": 66000,
+            "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E5BE00A6433D4A2B896CE93E21B7F08F_1441761612.jpeg"
+          },
+          "quantity": 4,
+          "subtotal": 264000
+        }
+      ],
+      "paid": 800000,
+      "return": 99000,
+      "totalPrice": 701000,
+      "id": 5
+    },
+    {
+      "time": "10/31/2023, 12:06:21 PM",
+      "item": [
+        {
+          "menu": {
+            "id": 1,
+            "name": "Stuffed Tofu Parahyangan",
+            "category": "Appetizer",
+            "price": 69000,
+            "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_C3D2F40C1F6B4219A5E70DF3D1B75EA2_1697015416.jpeg"
+          },
+          "quantity": 2,
+          "subtotal": 138000
+        }
+      ],
+      "paid": 138000,
+      "return": 0,
+      "totalPrice": 138000,
+      "id": 6
+    },
+    {
+      "time": "10/31/2023, 12:13:03 PM",
+      "item": [
+        {
+          "menu": {
+            "id": 1,
+            "name": "Stuffed Tofu Parahyangan",
+            "category": "Appetizer",
+            "price": 69000,
+            "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_C3D2F40C1F6B4219A5E70DF3D1B75EA2_1697015416.jpeg"
+          },
+          "quantity": 1,
+          "subtotal": 69000
+        }
+      ],
+      "paid": 70000,
+      "return": 1000,
+      "totalPrice": 69000,
+      "id": 7
+    },
+    {
+      "time": "10/31/2023, 12:15:06 PM",
+      "item": [
+        {
+          "menu": {
+            "id": 2,
+            "name": "Hokkien Spring Roll",
+            "category": "Appetizer",
+            "price": 68000,
+            "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_0FD771097A334837963EE66E6EC573FA_1441761609.jpeg"
+          },
+          "quantity": 1,
+          "subtotal": 68000
+        }
+      ],
+      "paid": 70000,
+      "return": 2000,
+      "totalPrice": 68000,
+      "id": 8
     }
   ]
 }
