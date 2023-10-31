@@ -23,7 +23,7 @@ function Transaction({ transaction }) {
 
       <td className="py-4 text-sm font-normal text-gray-500">
         <button
-          className="rounded-md bg-[#FF2351] px-2 py-1 text-white"
+          className="rounded-md bg-[#FF2351] px-2 py-1 text-white hover:bg-[#e81e48]"
           onClick={() => handleGoToDetail(id)}
         >
           Detail

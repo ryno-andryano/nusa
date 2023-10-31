@@ -1,10 +1,41 @@
 import axios from "axios";
 import useSWR from "swr";
 import Transaction from "./Transaction";
+import { useState } from "react";
+import SortHeader from "./SortHeader";
 
 function History() {
   const getHistory = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/transactions", getHistory);
+
+  const [sortDate, setSortDate] = useState(true);
+  const [sortPrice, setSortPrice] = useState(true);
+
+  const handleSortClick = (sortType) => () => {
+    sortTransactions(sortType);
+    if (sortType === "date") {
+      setSortDate(!sortDate);
+    } else {
+      setSortPrice(!sortPrice);
+    }
+  };
+
+  const sortTransactions = (sortType) => {
+    data.sort((a, b) => {
+      if (sortType === "price") {
+        const lowPrice = parseFloat(a.totalPrice) - parseFloat(b.totalPrice);
+        const highPrice = parseFloat(b.totalPrice) - parseFloat(a.totalPrice);
+        return sortPrice ? lowPrice : highPrice;
+      } else if (sortType === "date") {
+        // Sort Transactions by Date
+        const dateA = new Date(a.time);
+        const dateB = new Date(b.time);
+        const latestDate = dateA - dateB;
+        const oldestDate = dateB - dateA;
+        return sortDate ? latestDate : oldestDate;
+      }
+    });
+  };
 
   return (
     <section className="p-10 xl:px-20">
@@ -14,17 +45,23 @@ function History() {
         <table className="w-full">
           <thead className="border-b">
             <tr className="">
-              <td className="py-4 text-sm font-semibold text-gray-800">
-                Order Date
-              </td>
+              <SortHeader
+                label="Order Date"
+                sortType="date"
+                sortDirection={sortDate ? "desc" : "asc"}
+                onClick={handleSortClick}
+              />
 
               <td className="py-4 text-sm font-medium text-gray-500">
                 Order ID
               </td>
 
-              <td className="py-4 text-sm font-medium text-gray-500">
-                Total Price
-              </td>
+              <SortHeader
+                label="Total Price"
+                sortType="price"
+                sortDirection={sortPrice ? "desc" : "asc"}
+                onClick={handleSortClick}
+              />
 
               <td className="py-4 text-sm font-medium text-gray-500">Action</td>
             </tr>
@@ -40,5 +77,4 @@ function History() {
     </section>
   );
 }
-
 export default History;

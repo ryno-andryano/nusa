@@ -23,33 +23,28 @@ function HistoryDetail() {
         <span>ID: {data?.id}</span>
 
         <div className="mt-4 rounded-xl bg-white px-6 shadow">
-          <div className="">
-            {data?.items.map((item, index) => (
-              <div
-                className={`flex py-6 ${
-                  index !== data.items.length - 1 ? "border-b-2" : ""
-                }`}
-                key={item.id}
-              >
-                <img
-                  className="aspect-square w-20 rounded-lg object-cover"
-                  src={item.menu.image}
-                  alt={item.menu.name}
-                />
-
-                <div className="flex w-full justify-between">
-                  <div className="ml-4">
-                    <div>{item.menu.name}</div>
-                    <div>{formatCurrency(item.menu.price)}</div>
-                  </div>
-
-                  <div className="">{item.quantity}&times;</div>
-
-                  <div className="">{formatCurrency(item.subtotal)}</div>
+          {data?.items.map((item) => (
+            <div
+              key={item.menu.id}
+              className="flex py-6 border-b-2 last:border-b-0"
+            >
+              <img
+                className="aspect-square w-20 rounded-lg object-cover"
+                src={item.menu.image}
+                alt={item.menu.name}
+              />
+              <div className="grid grid-cols-3 w-full">
+                <div className="ml-4">
+                  <div className="overflow-hidden text-ellipsis whitespace-nowrap">{item.menu.name}</div>
+                  <div>{formatCurrency(item.menu.price)}</div>
                 </div>
+
+                <div className="text-center">{item.quantity}&times;</div>
+
+                <div className="text-right">{formatCurrency(item.subtotal)}</div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
