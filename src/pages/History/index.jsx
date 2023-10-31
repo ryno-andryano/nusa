@@ -8,16 +8,34 @@ function History() {
   const getHistory = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/transactions", getHistory);
 
-  const [sortDate, setSortDate] = useState(true);
-  const [sortPrice, setSortPrice] = useState(true);
+  const [sortDate, setSortDate] = useState("");
+  const [sortPrice, setSortPrice] = useState("");
 
   const handleSortClick = (sortType) => () => {
-    sortTransactions(sortType);
     if (sortType === "date") {
-      setSortDate(!sortDate);
-    } else {
-      setSortPrice(!sortPrice);
+      switch (sortDate) {
+        case "asc":
+          setSortDate("desc");
+          break;
+        case "desc":
+          setSortDate("");
+          break;
+        default:
+          setSortDate("asc");
+      }
+    } else if (sortType === "price") {
+      switch (sortPrice) {
+        case "asc":
+          setSortPrice("desc");
+          break;
+        case "desc":
+          setSortPrice("");
+          break;
+        default:
+          setSortPrice("asc");
+      }
     }
+    sortTransactions(sortType);
   };
 
   const sortTransactions = (sortType) => {
@@ -25,13 +43,14 @@ function History() {
       if (sortType === "price") {
         const lowPrice = parseFloat(a.totalPrice) - parseFloat(b.totalPrice);
         const highPrice = parseFloat(b.totalPrice) - parseFloat(a.totalPrice);
+
         return sortPrice ? lowPrice : highPrice;
       } else if (sortType === "date") {
-        // Sort Transactions by Date
         const dateA = new Date(a.time);
         const dateB = new Date(b.time);
         const latestDate = dateA - dateB;
         const oldestDate = dateB - dateA;
+
         return sortDate ? latestDate : oldestDate;
       }
     });
@@ -48,7 +67,7 @@ function History() {
               <SortHeader
                 label="Order Date"
                 sortType="date"
-                sortDirection={sortDate ? "desc" : "asc"}
+                sortDirection={sortDate}
                 onClick={handleSortClick}
               />
 
@@ -59,7 +78,7 @@ function History() {
               <SortHeader
                 label="Total Price"
                 sortType="price"
-                sortDirection={sortPrice ? "desc" : "asc"}
+                sortDirection={sortPrice}
                 onClick={handleSortClick}
               />
 
