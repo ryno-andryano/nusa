@@ -45,8 +45,8 @@ function SortHeader({ label, sortType, sortDirection, onClick }) {
 }
 
 SortHeader.propTypes = {
-  label: PropTypes.object.isRequired,
-  sortType: PropTypes.object.isRequired,
+  label: PropTypes.string,
+  sortType: PropTypes.string,
   sortDirection: PropTypes.object.isRequired,
   onClick: PropTypes.object.isRequired,
 };
