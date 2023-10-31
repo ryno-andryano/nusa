@@ -5,12 +5,13 @@ import { formatCurrency } from "../../utility/format.js";
 function Payment() {
   // Mengambil data keranjang (cart) dari Redux store
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+
 
   // Mengambil items, totalPrice, dan images dari state cart
   const { items, totalPrice } = cart;
 
   const [paymentAmount, setPaymentAmount] = useState(0);
+
 
   // Fungsi untuk menghitung kembalian
   const calculateChange = () => {
@@ -18,14 +19,17 @@ function Payment() {
   };
 
   const onSubmit = () => {
-    if (paymentAmount === 0) {
-      // Jika pembayaran masih 0, tampilkan pesan kesalahan atau lakukan sesuatu yang sesuai
-      console.log("Payment amount must be greater than 0.");
-    } else {
-      // Jika pembayaran valid, lanjutkan dengan proses pembayaran
-      console.log("Processing payment...");
-      // Di sini Anda dapat menambahkan logika untuk menyelesaikan pembayaran, seperti mengirim data ke server, dan lainnya.
-    }
+   // Membuat objek data transaksi sesuai format yang diinginkan
+   const newTransaction = {
+    time: new Date().toLocaleString(),
+    item: items,
+    paid: parseInt(paymentAmount),
+    return: calculateChange(),
+    totalPrice: totalPrice,
+  };
+
+  console.log("Processing payment:", newTransaction);
+    
   };
 
   return (
@@ -35,15 +39,18 @@ function Payment() {
         <div className="mt-10 flex flex-col items-start justify-center rounded-lg bg-white p-4 shadow">
           <ul>
             {items.map((item, index) => (
-              <li key={item.menu.id} className="mb-4 flex items-center">
+              <li key={item.menu.id} className="mb-2 flex items-center">
                 <img
                   src={item.menu.image}
                   alt={item.menu.name}
                   className="mr-4 h-16 w-16"
                 />
-                <div>
-                  <p>{item.menu.name}</p>
-                  <p>{formatCurrency(item.menu.price)}</p>
+                <div className="flex w-full justify-between">
+                  <div className="ml-4">
+                  <div>{item.menu.name}</div>
+                  <div>{item.quantity}x</div>
+                  <div>{formatCurrency(item.menu.price * item.quantity)}</div>
+                  </div>
                 </div>
                 {index < items.length - 1 && (
                   <hr className="my-4 border-t border-gray-300" />
