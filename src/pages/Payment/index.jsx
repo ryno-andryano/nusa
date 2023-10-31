@@ -1,32 +1,52 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { formatCurrency } from "../../utility/format.js";
+import ReactModal from "react-modal";
+import { useNavigate } from "react-router-dom";
+import { emptyCart } from "../../redux/cartSlice";
+import axios from "axios";
+
 
 function Payment() {
-  // Mengambil data keranjang (cart) dari Redux store
-  const cart = useSelector((state) => state.cart);
 
-  // Mengambil items, totalPrice, dan images dari state cart
+
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { items, totalPrice } = cart;
 
   const [paymentAmount, setPaymentAmount] = useState(0);
+  const [isPaymentSuccessModalOpen, setIsPaymentSuccessModalOpen] = useState(false);
 
-  // Fungsi untuk menghitung kembalian
   const calculateChange = () => {
     return paymentAmount - totalPrice;
   };
 
-  const onSubmit = () => {
-    // Membuat objek data transaksi sesuai format yang diinginkan
-    const newTransaction = {
-      time: new Date().toString(),
-      items: items,
-      paid: parseInt(paymentAmount),
-      return: calculateChange(),
-      totalPrice: totalPrice,
-    };
+  const closeModal = () => {
+    setIsPaymentSuccessModalOpen(false);
+  };
 
-    console.log(newTransaction);
+  const onSubmit = () => {
+
+      const newTransaction = {
+        time: new Date().toLocaleString(),
+        items,
+        totalPrice,
+        paid: parseInt(paymentAmount),
+        return: calculateChange(),
+      };
+
+      // kirim ke server di sini
+      axios
+     .post("http://localhost:3000/transactions", newTransaction)
+     .then(() => {
+       dispatch(emptyCart()); // Mengosongkan keranjang setelah pembayaran
+       setIsPaymentSuccessModalOpen(true);
+     })
+     .catch((error) => {
+       console.error("Error posting transaction:", error);
+     });
   };
 
   return (
@@ -83,6 +103,38 @@ function Payment() {
           </div>
         )}
       </section>
+
+      <ReactModal
+        isOpen={isPaymentSuccessModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Payment Success Modal"
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto inset-0"
+        overlayClassName="fixed inset-0 bg-black opacity-50"
+      >
+        <div className="relative w-full max-w-md bg-white rounded-lg shadow p-6 text-center white:bg-white">
+          <svg
+          className="mx-auto mb-4 text-black-400 w-12 h-12 dark:text-black-200"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+        viewBox="0 0 20 20"
+      >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"   
+        strokeLinejoin="round" 
+        strokeWidth="2"        
+        d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+      </svg>
+      <h2 className="text-xl font-normal text-black-500 black:text-black mb-5">
+      Payment Successful!
+      </h2>
+      <p>Your payment has been processed successfully.</p>
+        <button onClick={() => navigate("/order")}className="mt-4 text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+          Close</button>
+          </div>
+      </ReactModal>
     </div>
   );
 }
