@@ -8,15 +8,17 @@ function History() {
   const getHistory = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/transactions", getHistory);
 
-  const [sortDate, setSortDate] = useState(true);
-  const [sortPrice, setSortPrice] = useState(true);
+  const [sortDate, setSortDate] = useState("");
+  const [sortPrice, setSortPrice] = useState("");
 
   const handleSortClick = (sortType) => () => {
     sortTransactions(sortType);
     if (sortType === "date") {
       setSortDate(!sortDate);
+      setSortPrice("");
     } else {
       setSortPrice(!sortPrice);
+      setSortDate("");
     }
   };
 
@@ -25,13 +27,14 @@ function History() {
       if (sortType === "price") {
         const lowPrice = parseFloat(a.totalPrice) - parseFloat(b.totalPrice);
         const highPrice = parseFloat(b.totalPrice) - parseFloat(a.totalPrice);
+
         return sortPrice ? lowPrice : highPrice;
       } else if (sortType === "date") {
-        // Sort Transactions by Date
         const dateA = new Date(a.time);
         const dateB = new Date(b.time);
         const latestDate = dateA - dateB;
         const oldestDate = dateB - dateA;
+
         return sortDate ? latestDate : oldestDate;
       }
     });
@@ -48,7 +51,7 @@ function History() {
               <SortHeader
                 label="Order Date"
                 sortType="date"
-                sortDirection={sortDate ? "desc" : "asc"}
+                sortDirection={sortDate.toString()}
                 onClick={handleSortClick}
               />
 
@@ -59,7 +62,7 @@ function History() {
               <SortHeader
                 label="Total Price"
                 sortType="price"
-                sortDirection={sortPrice ? "desc" : "asc"}
+                sortDirection={sortPrice.toString()}
                 onClick={handleSortClick}
               />
 
