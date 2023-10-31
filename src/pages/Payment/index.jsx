@@ -6,12 +6,10 @@ function Payment() {
   // Mengambil data keranjang (cart) dari Redux store
   const cart = useSelector((state) => state.cart);
 
-
   // Mengambil items, totalPrice, dan images dari state cart
   const { items, totalPrice } = cart;
 
   const [paymentAmount, setPaymentAmount] = useState(0);
-
 
   // Fungsi untuk menghitung kembalian
   const calculateChange = () => {
@@ -19,17 +17,16 @@ function Payment() {
   };
 
   const onSubmit = () => {
-   // Membuat objek data transaksi sesuai format yang diinginkan
-   const newTransaction = {
-    time: new Date().toLocaleString(),
-    item: items,
-    paid: parseInt(paymentAmount),
-    return: calculateChange(),
-    totalPrice: totalPrice,
-  };
+    // Membuat objek data transaksi sesuai format yang diinginkan
+    const newTransaction = {
+      time: new Date().toString(),
+      items: items,
+      paid: parseInt(paymentAmount),
+      return: calculateChange(),
+      totalPrice: totalPrice,
+    };
 
-  console.log("Processing payment:", newTransaction);
-    
+    console.log(newTransaction);
   };
 
   return (
@@ -47,9 +44,9 @@ function Payment() {
                 />
                 <div className="flex w-full justify-between">
                   <div className="ml-4">
-                  <div>{item.menu.name}</div>
-                  <div>{item.quantity}x</div>
-                  <div>{formatCurrency(item.menu.price * item.quantity)}</div>
+                    <div>{item.menu.name}</div>
+                    <div>{item.quantity}x</div>
+                    <div>{formatCurrency(item.menu.price * item.quantity)}</div>
                   </div>
                 </div>
                 {index < items.length - 1 && (

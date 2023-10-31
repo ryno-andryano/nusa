@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { formatCurrency } from "../../utility/format.js";
+import { formatCurrency, formatDate } from "../../utility/format.js";
 
 function HistoryDetail() {
   const { id } = useParams();
@@ -17,7 +17,7 @@ function HistoryDetail() {
       <section className="w-full p-10 xl:px-20">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold uppercase">Transaction Detail</h1>
-          <span className="text-gray-500">{data?.time}</span>
+          <span className="text-gray-500">{formatDate(data?.time)}</span>
         </div>
 
         <span>ID: {data?.id}</span>
@@ -26,22 +26,26 @@ function HistoryDetail() {
           {data?.items.map((item) => (
             <div
               key={item.menu.id}
-              className="flex py-6 border-b-2 last:border-b-0"
+              className="flex border-b-2 py-6 last:border-b-0"
             >
               <img
                 className="aspect-square w-20 rounded-lg object-cover"
                 src={item.menu.image}
                 alt={item.menu.name}
               />
-              <div className="grid grid-cols-3 w-full">
+              <div className="grid w-full grid-cols-3">
                 <div className="ml-4">
-                  <div className="overflow-hidden text-ellipsis whitespace-nowrap">{item.menu.name}</div>
+                  <div className="overflow-hidden text-ellipsis whitespace-nowrap">
+                    {item.menu.name}
+                  </div>
                   <div>{formatCurrency(item.menu.price)}</div>
                 </div>
 
                 <div className="text-center">{item.quantity}&times;</div>
 
-                <div className="text-right">{formatCurrency(item.subtotal)}</div>
+                <div className="text-right">
+                  {formatCurrency(item.subtotal)}
+                </div>
               </div>
             </div>
           ))}
