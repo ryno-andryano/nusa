@@ -12,30 +12,14 @@ function History() {
   const [sortPrice, setSortPrice] = useState("");
 
   const handleSortClick = (sortType) => () => {
-    if (sortType === "date") {
-      switch (sortDate) {
-        case "asc":
-          setSortDate("desc");
-          break;
-        case "desc":
-          setSortDate("");
-          break;
-        default:
-          setSortDate("asc");
-      }
-    } else if (sortType === "price") {
-      switch (sortPrice) {
-        case "asc":
-          setSortPrice("desc");
-          break;
-        case "desc":
-          setSortPrice("");
-          break;
-        default:
-          setSortPrice("asc");
-      }
-    }
     sortTransactions(sortType);
+    if (sortType === "date") {
+      setSortDate(!sortDate);
+      setSortPrice("");
+    } else {
+      setSortPrice(!sortPrice);
+      setSortDate("");
+    }
   };
 
   const sortTransactions = (sortType) => {
@@ -67,7 +51,7 @@ function History() {
               <SortHeader
                 label="Order Date"
                 sortType="date"
-                sortDirection={sortDate}
+                sortDirection={sortDate.toString()}
                 onClick={handleSortClick}
               />
 
@@ -78,7 +62,7 @@ function History() {
               <SortHeader
                 label="Total Price"
                 sortType="price"
-                sortDirection={sortPrice}
+                sortDirection={sortPrice.toString()}
                 onClick={handleSortClick}
               />
 
