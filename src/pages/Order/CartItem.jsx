@@ -40,6 +40,7 @@ function CartItem({ item }) {
               onClick={handleMinusClick}
               type="button"
               disabled={quantity <= 1}
+              title="Decrease"
             >
               -
             </button>
@@ -48,6 +49,7 @@ function CartItem({ item }) {
               className="aspect-square w-6 rounded border bg-white text-sm hover:bg-gray-200 active:bg-gray-300"
               onClick={handlePlusClick}
               type="button"
+              title="Increase"
             >
               +
             </button>
