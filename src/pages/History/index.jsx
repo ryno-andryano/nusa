@@ -1,14 +1,14 @@
-import axios from "axios";
-import useSWR from "swr";
-import Transaction from "./Transaction";
 import { useState } from "react";
+import useSWR from "swr";
+import axios from "axios";
+import Transaction from "./Transaction";
 import SortHeader from "./SortHeader";
 
 function History() {
   const getHistory = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/transactions", getHistory);
 
-  const [sortDate, setSortDate] = useState("");
+  const [sortDate, setSortDate] = useState(false);
   const [sortPrice, setSortPrice] = useState("");
 
   const handleSortClick = (sortType) => () => {
@@ -47,7 +47,7 @@ function History() {
       <div className="mt-10 rounded-xl bg-white px-6 shadow">
         <table className="w-full">
           <thead className="border-b">
-            <tr className="">
+            <tr>
               <SortHeader
                 label="Order Date"
                 sortType="date"
@@ -80,4 +80,5 @@ function History() {
     </section>
   );
 }
+
 export default History;
