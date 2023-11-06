@@ -38,31 +38,26 @@ function Order() {
         [...prevState].filter((menu) => filters.includes(menu.category)),
       );
 
-    switch (sortBy) {
-      case "name-asc": {
-        setMenus((prevState) =>
-          [...prevState].sort((a, b) => a.name.localeCompare(b.name)),
-        );
-        break;
+    if (sortBy !== "default") {
+      let sortFuntion;
+      switch (sortBy) {
+        case "name-asc": {
+          sortFuntion = (a, b) => a.name.localeCompare(b.name);
+          break;
+        }
+        case "name-desc": {
+          sortFuntion = (a, b) => b.name.localeCompare(a.name);
+          break;
+        }
+        case "price-asc": {
+          sortFuntion = (a, b) => a.price - b.price;
+          break;
+        }
+        case "price-desc": {
+          sortFuntion = (a, b) => b.price - a.price;
+        }
       }
-      case "name-desc": {
-        setMenus((prevState) =>
-          [...prevState].sort((a, b) => b.name.localeCompare(a.name)),
-        );
-        break;
-      }
-      case "price-asc": {
-        setMenus((prevState) =>
-          [...prevState].sort((a, b) => a.price - b.price),
-        );
-        break;
-      }
-      case "price-desc": {
-        setMenus((prevState) =>
-          [...prevState].sort((a, b) => b.price - a.price),
-        );
-        break;
-      }
+      setMenus((prevState) => [...prevState].sort(sortFuntion));
     }
   }, [data, filters, query, sortBy]);
 
