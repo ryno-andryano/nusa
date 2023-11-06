@@ -55,6 +55,30 @@ function Sidebar() {
         </svg>
         <h1 className="pt-1 text-sm">History</h1>
       </NavLink>
+
+      <NavLink
+        to="/menu-list"
+        className={({ isActive }) =>
+          `flex w-16 flex-col items-center justify-center rounded-xl border pb-2 pt-3 shadow transition-colors ${
+            isActive
+              ? "bg-[#FF2351] text-white hover:bg-[#e81e48]"
+              : "bg-white text-gray-500 hover:bg-gray-100"
+          }`
+        }
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          className="bi bi-card-list h-5 w-5"
+          viewBox="0 0 16 16"
+        >
+          <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+          <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+        </svg>
+        <h1 className="pt-1 text-sm">Menu</h1>
+      </NavLink>
     </aside>
   );
 }

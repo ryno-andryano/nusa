@@ -5,196 +5,224 @@
       "name": "Stuffed Tofu Parahyangan",
       "category": "Appetizer",
       "price": 69000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_C3D2F40C1F6B4219A5E70DF3D1B75EA2_1697015416.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_C3D2F40C1F6B4219A5E70DF3D1B75EA2_1697015416.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 2,
       "name": "Hokkien Spring Roll",
       "category": "Appetizer",
       "price": 68000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_0FD771097A334837963EE66E6EC573FA_1441761609.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_0FD771097A334837963EE66E6EC573FA_1441761609.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 3,
       "name": "Udang Gulung Tempo Doeloe",
       "category": "Appetizer",
       "price": 77000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E978ED401D464D8F96CCDEBF4A1D8307_1441761613.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E978ED401D464D8F96CCDEBF4A1D8307_1441761613.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 4,
       "name": "Malay Kerabu Mangga",
       "category": "Appetizer",
       "price": 66000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E5BE00A6433D4A2B896CE93E21B7F08F_1441761612.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E5BE00A6433D4A2B896CE93E21B7F08F_1441761612.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 5,
       "name": "Gulai Fish Head Tasik",
       "category": "Seafood",
       "price": 210000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_307F2335A12C418C8C7D50AA0BA134FC_1441773582.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_307F2335A12C418C8C7D50AA0BA134FC_1441773582.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 6,
       "name": "Jimbaran Fried Fish",
       "category": "Seafood",
       "price": 130000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_3F83DA5CAF6C4454A5F7E90D5F92A5BF_1586858338.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_3F83DA5CAF6C4454A5F7E90D5F92A5BF_1586858338.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 7,
       "name": "Golden Prawn Siam Style",
       "category": "Seafood",
       "price": 125000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_F5CE18210CD64E0A9A51315929E59DE0_1441773567.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_F5CE18210CD64E0A9A51315929E59DE0_1441773567.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 8,
       "name": "Broccoli Prawn With Sauce",
       "category": "Seafood",
       "price": 97000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_FC508CC1501F4C199D9C2C96E5D689C5_1697015417.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_FC508CC1501F4C199D9C2C96E5D689C5_1697015417.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 9,
       "name": "Squid Omelette Pulau Seribu",
       "category": "Seafood",
       "price": 98000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_2A1022B54753455E8D5F06342D28467C_1441773594.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_2A1022B54753455E8D5F06342D28467C_1441773594.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 10,
       "name": "Royal Thai Chili Crab",
       "category": "Seafood",
       "price": 310000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_3B6B939DDC3F44ABBDCA4CE9254258F7_1441773603.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_3B6B939DDC3F44ABBDCA4CE9254258F7_1441773603.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 11,
       "name": "Thai Chili Rice Set",
       "category": "Rice & Noodle",
       "price": 90000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_42C2011EC65C4A03A3C44D07EE91BF2D_1471922390.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_42C2011EC65C4A03A3C44D07EE91BF2D_1471922390.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 12,
       "name": "Mie Jawa",
       "category": "Rice & Noodle",
       "price": 85000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_BD76556D494441F3ADA9AD629BE9B8BF_1441771983.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_BD76556D494441F3ADA9AD629BE9B8BF_1441771983.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 13,
       "name": "Seafood Fried Rice",
       "category": "Rice & Noodle",
       "price": 85000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_93B9397448324A41B0400B6B79489E7B_1441771992.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_93B9397448324A41B0400B6B79489E7B_1441771992.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 14,
       "name": "Nasi Bogana Prambanan",
       "category": "Rice & Noodle",
       "price": 88000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_87169CF2EFE144739D37D1DB4BB0A614_1471603031.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_87169CF2EFE144739D37D1DB4BB0A614_1471603031.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 15,
       "name": "Malacca Nasi Lemak",
       "category": "Rice & Noodle",
       "price": 98000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_0F6DF9DF308849768BBE5D310EC8DEA6_1441771987.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_0F6DF9DF308849768BBE5D310EC8DEA6_1441771987.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 16,
       "name": "Nasi Bali Singaraja",
       "category": "Rice & Noodle",
       "price": 95000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_AC2BEC6A06214E45A7CBF498D0FDC54C_1471922390.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_AC2BEC6A06214E45A7CBF498D0FDC54C_1471922390.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 17,
       "name": "Red Curry Lamb Mataram",
       "category": "Meat",
       "price": 145000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_D1FF88483F8B48088AE67D8FEB28D68D_1441782047.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_D1FF88483F8B48088AE67D8FEB28D68D_1441782047.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 18,
       "name": "Malacca Blackpepper Beef",
       "category": "Meat",
       "price": 180000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_1E24A5DE66B54FC89401274356FF99CD_1697015416.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_1E24A5DE66B54FC89401274356FF99CD_1697015416.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 19,
       "name": "Dendeng Balado Dua Rasa",
       "category": "Meat",
       "price": 145000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_BDCACBA0B9504BFD919A1AB831DD193E_1441782044.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_BDCACBA0B9504BFD919A1AB831DD193E_1441782044.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 20,
       "name": "Fried Chicken Longan Sauce",
       "category": "Meat",
       "price": 118000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_567DC8D6C8674B23AD0B1306EAEC24B6_1441782045.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_567DC8D6C8674B23AD0B1306EAEC24B6_1441782045.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 21,
       "name": "Fried Chicken With Mango Sauce",
       "category": "Meat",
       "price": 118000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_9DD38E41CFB849C39DFAF341BE00598A_1441782047.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_9DD38E41CFB849C39DFAF341BE00598A_1441782047.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 22,
       "name": "Kangkung Balachan Hotplate",
       "category": "Vegetables",
       "price": 77000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_806FB4D4F3764A6E8683AE3A184A030E_1441782758.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_806FB4D4F3764A6E8683AE3A184A030E_1441782758.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 23,
       "name": "Tumis Pakchoy Malacca",
       "category": "Vegetables",
       "price": 75000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E4A45FFE820F45C9BAC3298E25B33A41_1441782759.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_E4A45FFE820F45C9BAC3298E25B33A41_1441782759.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 24,
       "name": "Taucho Tahu Udang",
       "category": "Vegetables",
       "price": 85000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_5AF95913C1114654B86B6B844E0B8CF3_1441782761.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_5AF95913C1114654B86B6B844E0B8CF3_1441782761.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 25,
       "name": "Garlic Poiling",
       "category": "Vegetables",
       "price": 72000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_FA56733A212243949DFE9AF2B8F49D90_1442596772.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_FA56733A212243949DFE9AF2B8F49D90_1442596772.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 26,
       "name": "Fresh Fruit Platter",
       "category": "Dessert",
       "price": 90000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_8EE30CBA49744856B44B3841606209BF_1441783688.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_8EE30CBA49744856B44B3841606209BF_1441783688.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 27,
       "name": "Es Dawet Ndoro Putri",
       "category": "Dessert",
       "price": 62000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_24B9105FBD434914BF8DFEC8361DF28E_1441783687.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_24B9105FBD434914BF8DFEC8361DF28E_1441783687.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     },
     {
       "id": 28,
       "name": "Ketan Hitam Mangga",
       "category": "Dessert",
       "price": 65000,
-      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_319DA30BF7FB426AB89C997835A1F7FE_1441783691.jpeg"
+      "image": "https://api.arenacorp.com/assets/uploaded/arena/media/MEDI_319DA30BF7FB426AB89C997835A1F7FE_1441783691.jpeg",
+      "lastModified": "Mon Oct 30 2023 08:00:00 GMT+0700 (Western Indonesia Time)"
     }
   ],
   "transactions": [

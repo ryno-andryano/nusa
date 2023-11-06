@@ -6,6 +6,7 @@ import Order from "./pages/Order";
 import Payment from "./pages/Payment";
 import History from "./pages/History";
 import HistoryDetail from "./pages/HistoryDetail";
+import Menu from "./pages/Menu";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/history" element={<History />} />
           <Route path="/history/:id" element={<HistoryDetail />} />
+          <Route path="/menu-list" element={<Menu />} />
         </Routes>
       </Main>
     </div>
