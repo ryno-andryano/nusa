@@ -8,7 +8,7 @@ function Index() {
   const getMenuList = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/menus", getMenuList);
 
-  const [sortMenu, setSortMenu] = useState(false);
+  const [sortMenu, setSortMenu] = useState("");
   const [sortCategory, setSortCategory] = useState("");
   const [sortPrice, setSortPrice] = useState("");
   const [sortDate, setSortDate] = useState("");
@@ -42,10 +42,15 @@ function Index() {
   const sortTransactions = (sortType) => {
     data.sort((a, b) => {
       if (sortType === "menu") {
-        const menuAsc = a.name - b.name;
-        const menuDesc = b.name - a.name;
+        const menuAsc = a.name < b.name ? -1 : 1;
+        const menuDesc = a.name > b.name ? -1 : 1;
 
         return sortMenu ? menuAsc : menuDesc;
+      } else if (sortType === "category") {
+        const categoryAsc = a.category < b.category ? -1 : 1;
+        const categoryDesc = a.category > b.category ? -1 : 1;
+
+        return sortCategory ? categoryAsc : categoryDesc;
       } else if (sortType === "date") {
         const dateA = new Date(a.lastModified);
         const dateB = new Date(b.lastModified);
@@ -66,6 +71,7 @@ function Index() {
     <section className="p-10 xl:px-20">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold uppercase">Menu List</h1>
+        {/* Add Button */}
         <button className="mx-1 flex items-center rounded-md bg-[#FF2351] px-3 py-2 text-white hover:bg-[#e81e48]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -73,12 +79,12 @@ function Index() {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="h-5 w-5"
+            className="h-6 w-6 mr-1"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M12 4.5v15m7.5-7.5h-15"
+              d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
           ADD

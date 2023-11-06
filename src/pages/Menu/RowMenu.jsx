@@ -7,7 +7,10 @@ function RowMenu({ menu }) {
 
   const { id, name, category, price, image, lastModified } = menu;
 
-  // const handleGoToDetail = (id) => {
+  // const handleUpdate = (id) => {
+  // };
+
+  // const handleDelete = (id) => {
   // };
 
   return (
@@ -30,8 +33,8 @@ function RowMenu({ menu }) {
       <td className="py-4 text-sm font-normal text-gray-500">
         {/* Update Button */}
         <button
-          className="rounded-md bg-[#FF2351] px-1 py-1 mx-1 text-white hover:bg-[#e81e48]"
-          // onClick={() => handleGoToDetail(id)}
+          className="rounded-md bg-[#FF2351] px-1 py-1 mr-1 text-white hover:bg-[#e81e48]"
+          // onClick={() => handleUpdate(id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +55,7 @@ function RowMenu({ menu }) {
         {/* Delete Button */}
         <button
           className="rounded-md bg-[#FF2351] px-1 py-1 mx-1 text-white hover:bg-[#e81e48]"
-          // onClick={() => handleGoToDetail(id)}
+          // onClick={() => handleDelete(id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
