@@ -88,11 +88,13 @@ function SortHeader({ label, sortType, sortDirection, onClick }) {
       className="cursor-pointer py-4 text-sm font-semibold text-gray-800 hover:text-[#e81e48]"
       onClick={onClick(sortType)}
     >
-      <div className="mr-1 flex flex-col">
-        <div className="-mb-[2px]">{caretUpIcon}</div>
-        <div className="-mt-[2px]">{caretDownIcon}</div>
+      <div className="flex">
+        <div className="mr-1 flex flex-col">
+          <div className="-mb-[2px]">{caretUpIcon}</div>
+          <div className="-mt-[2px]">{caretDownIcon}</div>
+        </div>
+        <div>{label}</div>
       </div>
-      <div>{label}</div>
     </td>
   );
 }
