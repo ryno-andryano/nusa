@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import axios from "axios";
+import { useEffect } from "react";
 
 function FormModal({ isOpen, onClose, menu }) {
   const schema = yup.object().shape({
@@ -24,9 +25,19 @@ function FormModal({ isOpen, onClose, menu }) {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  useEffect(() => {
+    if (Object.keys(menu).length !== 0) {
+      setValue("name", menu.name);
+      setValue("image", menu.image);
+      setValue("category", menu.category);
+      setValue("price", menu.price);
+    }
+  }, [menu, setValue]);
 
   const onSubmit = (data) => {
     const name = data.name
@@ -42,12 +53,20 @@ function FormModal({ isOpen, onClose, menu }) {
       lastModified,
     };
 
-    axios
-      .post("http://localhost:3000/menus", payload)
-      .then(() => onClose())
-      .catch((error) => {
-        console.error("Cannot save changes:", error);
-      });
+    if (Object.keys(menu).length !== 0)
+      axios
+        .put(`http://localhost:3000/menus/${menu.id}`, payload)
+        .then(() => onClose())
+        .catch((error) => {
+          console.error("Cannot save changes:", error);
+        });
+    else
+      axios
+        .post("http://localhost:3000/menus", payload)
+        .then(() => onClose())
+        .catch((error) => {
+          console.error("Cannot save changes:", error);
+        });
   };
 
   return (
@@ -121,16 +140,7 @@ function FormModal({ isOpen, onClose, menu }) {
                 type="text"
                 id="category"
                 className="w-full rounded-md focus:border-[#FF2351] focus:ring-[#FF2351]"
-                list="categories"
               />
-              <datalist id="categories">
-                <option value="Appetizer" />
-                <option value="Seafood" />
-                <option value="Rice & Noodle" />
-                <option value="Meat" />
-                <option value="Vegetables" />
-                <option value="Dessert" />
-              </datalist>
             </div>
 
             <div className="col-span-2 sm:col-span-1">
@@ -155,7 +165,7 @@ function FormModal({ isOpen, onClose, menu }) {
 
           <div className="mt-12 flex justify-end gap-3">
             <button
-              className="rounded-lg border border-black bg-white px-5 py-2 text-center uppercase transition-colors hover:bg-gray-100"
+              className="w-24 rounded-lg border border-black bg-white py-2 text-center text-center uppercase transition-colors hover:bg-gray-100"
               onClick={onClose}
               type="button"
             >
@@ -163,7 +173,7 @@ function FormModal({ isOpen, onClose, menu }) {
             </button>
 
             <button
-              className="rounded-lg border border-[#FF2351] bg-[#FF2351] px-5 py-2 text-center uppercase text-white transition-colors hover:bg-[#e81e48]"
+              className="w-24 rounded-lg border border-[#FF2351] bg-[#FF2351] py-2 text-center text-center uppercase text-white transition-colors hover:bg-[#e81e48]"
               type="submit"
             >
               Save
@@ -173,7 +183,7 @@ function FormModal({ isOpen, onClose, menu }) {
 
         <div className="absolute left-0 right-0 top-0 flex items-center justify-between rounded-t-lg bg-[#FF2351] px-6 py-4 text-white md:px-16">
           <h1 className="text-2xl font-semibold">
-            {menu ? "Update" : "Add New"} Menu
+            {Object.keys(menu).length === 0 ? "Update" : "Add New"} Menu
           </h1>
           <button onClick={onClose}>
             <svg
