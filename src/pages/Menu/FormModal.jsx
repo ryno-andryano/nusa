@@ -6,7 +6,7 @@ import * as yup from "yup";
 import axios from "axios";
 import { useEffect } from "react";
 
-function FormModal({ isOpen, onClose, menu }) {
+function FormModal({ isOpen, onClose, menu, mutate }) {
   const schema = yup.object().shape({
     name: yup.string().required("Required"),
     image: yup
@@ -56,14 +56,20 @@ function FormModal({ isOpen, onClose, menu }) {
     if (Object.keys(menu).length !== 0)
       axios
         .put(`http://localhost:3000/menus/${menu.id}`, payload)
-        .then(() => onClose())
+        .then(() => {
+          onClose();
+          mutate();
+        })
         .catch((error) => {
           console.error("Cannot save changes:", error);
         });
     else
       axios
         .post("http://localhost:3000/menus", payload)
-        .then(() => onClose())
+        .then(() => {
+          onClose();
+          mutate();
+        })
         .catch((error) => {
           console.error("Cannot save changes:", error);
         });
@@ -207,6 +213,7 @@ FormModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   menu: PropTypes.object,
+  mutate: PropTypes.func.isRequired,
 };
 
 export default FormModal;

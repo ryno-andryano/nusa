@@ -2,11 +2,14 @@ import Modal from "react-modal";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-function DeleteModal({ isOpen, onClose, menu }) {
+function DeleteModal({ isOpen, onClose, menu, mutate }) {
   const handleConfirmDelete = () => {
     axios
       .delete(`http://localhost:3000/menus/${menu.id}`)
-      .then(() => onClose())
+      .then(() => {
+        onClose();
+        mutate();
+      })
       .catch((error) => {
         console.error("Cannot save changes:", error);
       });
@@ -71,6 +74,7 @@ DeleteModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   menu: PropTypes.object.isRequired,
+  mutate: PropTypes.func.isRequired,
 };
 
 export default DeleteModal;

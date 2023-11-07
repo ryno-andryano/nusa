@@ -8,7 +8,7 @@ import DeleteModal from "./DeleteModal.jsx";
 
 function Menu() {
   const getMenuList = (url) => axios.get(url).then((res) => res.data);
-  const { data } = useSWR("http://localhost:3000/menus", getMenuList);
+  const { data, mutate } = useSWR("http://localhost:3000/menus", getMenuList);
 
   const [sortMenu, setSortMenu] = useState("");
   const [sortCategory, setSortCategory] = useState("");
@@ -123,7 +123,7 @@ function Menu() {
         <div className="mt-10 rounded-xl bg-white px-6 shadow">
           <table className="w-full">
             <thead className="border-b">
-              <tr className="">
+              <tr>
                 <SortHeader
                   label="Menu"
                   sortType="menu"
@@ -174,12 +174,14 @@ function Menu() {
         onClose={handleCloseFormModal}
         isOpen={isFormModalOpen}
         menu={selectedMenu}
+        mutate={mutate}
       />
 
       <DeleteModal
         onClose={handleCloseDeleteModal}
         isOpen={isDeleteModalOpen}
         menu={selectedMenu}
+        mutate={mutate}
       />
     </>
   );
