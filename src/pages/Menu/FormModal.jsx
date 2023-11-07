@@ -190,7 +190,7 @@ function FormModal({ isOpen, onClose, menu, mutate }) {
 
         <div className="absolute left-0 right-0 top-0 flex items-center justify-between rounded-t-lg bg-[#FF2351] px-6 py-4 text-white md:px-16">
           <h1 className="text-2xl font-semibold">
-            {Object.keys(menu).length === 0 ? "Update" : "Add New"} Menu
+            {Object.keys(menu).length !== 0 ? "Update" : "Add New"} Menu
           </h1>
           <button onClick={onClose}>
             <svg
