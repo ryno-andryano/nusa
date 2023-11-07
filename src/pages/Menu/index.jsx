@@ -4,8 +4,9 @@ import SortHeader from "./SortHeader";
 import RowMenu from "./RowMenu";
 import FormModal from "./FormModal.jsx";
 import { useState } from "react";
+import DeleteModal from "./DeleteModal.jsx";
 
-function Index() {
+function Menu() {
   const getMenuList = (url) => axios.get(url).then((res) => res.data);
   const { data } = useSWR("http://localhost:3000/menus", getMenuList);
 
@@ -13,13 +14,28 @@ function Index() {
   const [sortCategory, setSortCategory] = useState("");
   const [sortPrice, setSortPrice] = useState("");
   const [sortDate, setSortDate] = useState("");
-  
-  const [isFormModalOpen, setIsFormModalOpen] = useState(true);
+
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState({});
-  
-  const handleCloseFormModal = () => {
-    setIsFormModalOpen(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleCloseFormModal = () => setIsFormModalOpen(false);
+
+  const handleCloseDeleteModal = () => setIsDeleteModalOpen(false);
+
+  const handleAddButtonClick = () => {
     setSelectedMenu({});
+    setIsFormModalOpen(true);
+  };
+
+  const handleUpdateButtonClick = (menu) => {
+    setSelectedMenu(menu);
+    setIsFormModalOpen(true);
+  };
+
+  const handleDeleteButtonClick = (menu) => {
+    setSelectedMenu(menu);
+    setIsDeleteModalOpen(true);
   };
 
   const handleSortClick = (sortType) => () => {
@@ -82,14 +98,17 @@ function Index() {
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold uppercase">Menu List</h1>
           {/* Add Button */}
-          <button className="mx-1 flex items-center rounded-md bg-[#FF2351] px-3 py-2 text-white hover:bg-[#e81e48]">
+          <button
+            className="mx-1 flex items-center rounded-md bg-[#FF2351] px-4 py-2 text-white hover:bg-[#e81e48]"
+            onClick={handleAddButtonClick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="h-6 w-6 mr-1"
+              className="mr-1 h-5 w-5"
             >
               <path
                 strokeLinecap="round"
@@ -133,13 +152,18 @@ function Index() {
                   onClick={handleSortClick}
                 />
 
-                <td className="py-4 text-sm font-medium text-gray-500">Action</td>
+                <td className="py-4 text-sm font-medium">Actions</td>
               </tr>
             </thead>
 
             <tbody className="bg-white lg:border-gray-300">
               {data?.map((menu) => (
-                <RowMenu key={menu.id} menu={menu} />
+                <RowMenu
+                  key={menu.id}
+                  menu={menu}
+                  onUpdate={handleUpdateButtonClick}
+                  onDelete={handleDeleteButtonClick}
+                />
               ))}
             </tbody>
           </table>
@@ -147,12 +171,18 @@ function Index() {
       </section>
 
       <FormModal
-          onClose={handleCloseFormModal}
-          isOpen={isFormModalOpen}
-          menu={selectedMenu}
-        />
+        onClose={handleCloseFormModal}
+        isOpen={isFormModalOpen}
+        menu={selectedMenu}
+      />
+
+      <DeleteModal
+        onClose={handleCloseDeleteModal}
+        isOpen={isDeleteModalOpen}
+        menu={selectedMenu}
+      />
     </>
   );
 }
 
-export default Index;
+export default Menu;

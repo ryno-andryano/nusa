@@ -1,23 +1,18 @@
-import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { formatCurrency, formatDate } from "../../utility/format.js";
 
-function RowMenu({ menu }) {
-  const navigate = useNavigate();
-
+function RowMenu({ menu, onUpdate, onDelete }) {
   const { id, name, category, price, image, lastModified } = menu;
 
-  // const handleUpdate = (id) => {
-  // };
+  const handleUpdate = () => onUpdate(menu);
 
-  // const handleDelete = (id) => {
-  // };
+  const handleDelete = () => onDelete(menu);
 
   return (
     <tr key={id}>
-      <td className="flex items-center py-4 text-sm text-gray-600">
+      <td className="flex items-center gap-x-4 py-4 text-sm text-gray-600">
         <img
-          className="aspect-square w-14 rounded-lg object-cover mr-4"
+          className="aspect-square w-14 rounded-lg object-cover"
           src={image}
           alt={name}
         />
@@ -33,8 +28,9 @@ function RowMenu({ menu }) {
       <td className="py-4 text-sm font-normal text-gray-500">
         {/* Update Button */}
         <button
-          className="rounded-md bg-[#FF2351] px-1 py-1 mr-1 text-white hover:bg-[#e81e48]"
-          // onClick={() => handleUpdate(id)}
+          className="mr-1 rounded-md bg-[#FF2351] p-2 text-white hover:bg-[#e81e48]"
+          onClick={handleUpdate}
+          title="Update"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +38,7 @@ function RowMenu({ menu }) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="h-6 w-6"
+            className="h-5 w-5"
           >
             <path
               strokeLinecap="round"
@@ -54,8 +50,9 @@ function RowMenu({ menu }) {
 
         {/* Delete Button */}
         <button
-          className="rounded-md bg-[#FF2351] px-1 py-1 mx-1 text-white hover:bg-[#e81e48]"
-          // onClick={() => handleDelete(id)}
+          className="mx-1 rounded-md bg-[#FF2351] p-2 text-white hover:bg-[#e81e48]"
+          onClick={handleDelete}
+          title="Delete"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +60,7 @@ function RowMenu({ menu }) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="h-6 w-6"
+            className="h-5 w-5"
           >
             <path
               strokeLinecap="round"
@@ -77,6 +74,10 @@ function RowMenu({ menu }) {
   );
 }
 
-RowMenu.propTypes = { menu: PropTypes.object.isRequired };
+RowMenu.propTypes = {
+  menu: PropTypes.object.isRequired,
+  onUpdate: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default RowMenu;

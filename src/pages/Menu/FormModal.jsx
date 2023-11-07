@@ -165,7 +165,7 @@ function FormModal({ isOpen, onClose, menu }) {
 
           <div className="mt-12 flex justify-end gap-3">
             <button
-              className="w-24 rounded-lg border border-black bg-white py-2 text-center text-center uppercase transition-colors hover:bg-gray-100"
+              className="w-24 rounded-lg border border-black bg-white py-2 text-center uppercase transition-colors hover:bg-gray-100"
               onClick={onClose}
               type="button"
             >
@@ -173,7 +173,7 @@ function FormModal({ isOpen, onClose, menu }) {
             </button>
 
             <button
-              className="w-24 rounded-lg border border-[#FF2351] bg-[#FF2351] py-2 text-center text-center uppercase text-white transition-colors hover:bg-[#e81e48]"
+              className="w-24 rounded-lg border border-[#FF2351] bg-[#FF2351] py-2 text-center uppercase text-white transition-colors hover:bg-[#e81e48]"
               type="submit"
             >
               Save
