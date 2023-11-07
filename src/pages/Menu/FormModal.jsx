@@ -26,6 +26,7 @@ function FormModal({ isOpen, onClose, menu, mutate }) {
     handleSubmit,
     formState: { errors },
     setValue,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -36,8 +37,8 @@ function FormModal({ isOpen, onClose, menu, mutate }) {
       setValue("image", menu.image);
       setValue("category", menu.category);
       setValue("price", menu.price);
-    }
-  }, [menu, setValue]);
+    } else reset();
+  }, [menu, reset, setValue]);
 
   const onSubmit = (data) => {
     const name = data.name
