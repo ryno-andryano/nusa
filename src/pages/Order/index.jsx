@@ -8,6 +8,7 @@ import { formatCurrency } from "../../utility/format.js";
 import MenuItem from "./MenuItem.jsx";
 import CartItem from "./CartItem.jsx";
 import CategoryFilter from "./CategoryFilter.jsx";
+import { BounceLoader } from "react-spinners";
 
 function Order() {
   const [menus, setMenus] = useState([]);
@@ -140,7 +141,9 @@ function Order() {
             </div>
           </>
         ) : (
-          <p>Loading...</p>
+          <div className="flex h-full w-full items-center justify-center">
+            <BounceLoader color="#FF2351" size={100} speedMultiplier={1.2} />
+          </div>
         )}
       </section>
 

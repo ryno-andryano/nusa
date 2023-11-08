@@ -5,10 +5,14 @@ import RowMenu from "./RowMenu";
 import FormModal from "./FormModal.jsx";
 import { useState } from "react";
 import DeleteModal from "./DeleteModal.jsx";
+import { BounceLoader } from "react-spinners";
 
 function Menu() {
   const getMenuList = (url) => axios.get(url).then((res) => res.data);
-  const { data, mutate } = useSWR("http://localhost:3000/menus", getMenuList);
+  const { data, mutate, isLoading, error } = useSWR(
+    "http://localhost:3000/menus",
+    getMenuList,
+  );
 
   const [sortMenu, setSortMenu] = useState("");
   const [sortCategory, setSortCategory] = useState("");
@@ -65,7 +69,7 @@ function Menu() {
   };
 
   const sortTransactions = (sortType) => {
-    data.sort((a, b) => {
+    [...data].sort((a, b) => {
       if (sortType === "menu") {
         const menuAsc = a.name < b.name ? -1 : 1;
         const menuDesc = a.name > b.name ? -1 : 1;
@@ -94,81 +98,89 @@ function Menu() {
 
   return (
     <>
-      <section className="p-10 xl:px-20">
-        <div className="flex justify-between">
-          <h1 className="text-2xl font-bold uppercase">Menu List</h1>
-          {/* Add Button */}
-          <button
-            className="mx-1 flex items-center rounded-md bg-[#FF2351] px-4 py-2 text-white hover:bg-[#e81e48]"
-            onClick={handleAddButtonClick}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="mr-1 h-5 w-5"
+      <div className="flex min-h-screen">
+        <section className="w-full p-10 xl:px-20">
+          <div className="flex justify-between">
+            <h1 className="text-2xl font-bold uppercase">Menu List</h1>
+            {/* Add Button */}
+            <button
+              className="mx-1 flex h-8 items-center rounded-md bg-[#FF2351] px-3 py-2 text-sm text-white hover:bg-[#e81e48]"
+              onClick={handleAddButtonClick}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            ADD
-          </button>
-        </div>
-
-        <div className="mt-10 rounded-xl bg-white px-6 shadow">
-          <table className="w-full">
-            <thead className="border-b">
-              <tr>
-                <SortHeader
-                  label="Menu"
-                  sortType="menu"
-                  sortDirection={sortMenu.toString()}
-                  onClick={handleSortClick}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="mr-1 h-5 w-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
+              </svg>
+              ADD
+            </button>
+          </div>
 
-                <SortHeader
-                  label="Category"
-                  sortType="category"
-                  sortDirection={sortCategory.toString()}
-                  onClick={handleSortClick}
-                />
+          {!error && !isLoading ? (
+            <div className="mt-10 rounded-xl bg-white px-6 shadow">
+              <table className="w-full">
+                <thead className="border-b">
+                  <tr>
+                    <SortHeader
+                      label="Menu"
+                      sortType="menu"
+                      sortDirection={sortMenu.toString()}
+                      onClick={handleSortClick}
+                    />
 
-                <SortHeader
-                  label="Price"
-                  sortType="price"
-                  sortDirection={sortPrice.toString()}
-                  onClick={handleSortClick}
-                />
+                    <SortHeader
+                      label="Category"
+                      sortType="category"
+                      sortDirection={sortCategory.toString()}
+                      onClick={handleSortClick}
+                    />
 
-                <SortHeader
-                  label="LastModified"
-                  sortType="date"
-                  sortDirection={sortDate.toString()}
-                  onClick={handleSortClick}
-                />
+                    <SortHeader
+                      label="Price"
+                      sortType="price"
+                      sortDirection={sortPrice.toString()}
+                      onClick={handleSortClick}
+                    />
 
-                <td className="py-4 text-sm font-medium">Actions</td>
-              </tr>
-            </thead>
+                    <SortHeader
+                      label="LastModified"
+                      sortType="date"
+                      sortDirection={sortDate.toString()}
+                      onClick={handleSortClick}
+                    />
 
-            <tbody className="bg-white lg:border-gray-300">
-              {data?.map((menu) => (
-                <RowMenu
-                  key={menu.id}
-                  menu={menu}
-                  onUpdate={handleUpdateButtonClick}
-                  onDelete={handleDeleteButtonClick}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+                    <td className="py-4 text-sm font-medium">Actions</td>
+                  </tr>
+                </thead>
+
+                <tbody className="bg-white lg:border-gray-300">
+                  {[...data].map((menu) => (
+                    <RowMenu
+                      key={menu.id}
+                      menu={menu}
+                      onUpdate={handleUpdateButtonClick}
+                      onDelete={handleDeleteButtonClick}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="flex h-full w-full items-center justify-center">
+              <BounceLoader color="#FF2351" size={100} speedMultiplier={1.2} />
+            </div>
+          )}
+        </section>
+      </div>
 
       <FormModal
         onClose={handleCloseFormModal}
