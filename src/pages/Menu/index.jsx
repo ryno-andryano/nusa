@@ -69,7 +69,7 @@ function Menu() {
   };
 
   const sortTransactions = (sortType) => {
-    [...data].sort((a, b) => {
+    data.sort((a, b) => {
       if (sortType === "menu") {
         const menuAsc = a.name < b.name ? -1 : 1;
         const menuDesc = a.name > b.name ? -1 : 1;
@@ -163,7 +163,7 @@ function Menu() {
                 </thead>
 
                 <tbody className="bg-white lg:border-gray-300">
-                  {[...data].map((menu) => (
+                  {data.map((menu) => (
                     <RowMenu
                       key={menu.id}
                       menu={menu}

@@ -27,7 +27,7 @@ function History() {
   };
 
   const sortTransactions = (sortType) => {
-    [...data].sort((a, b) => {
+    data.sort((a, b) => {
       if (sortType === "price") {
         const lowPrice = parseFloat(a.totalPrice) - parseFloat(b.totalPrice);
         const highPrice = parseFloat(b.totalPrice) - parseFloat(a.totalPrice);
@@ -79,7 +79,7 @@ function History() {
               </thead>
 
               <tbody className="bg-white lg:border-gray-300">
-                {[...data].map((transaction) => (
+                {data.map((transaction) => (
                   <Transaction key={transaction.id} transaction={transaction} />
                 ))}
               </tbody>
